@@ -1,6 +1,7 @@
 *.class
 *.log
-
+.cache
+.classpath
 # sbt specific
 .cache/
 .history/
@@ -16,6 +17,3 @@ project/plugins/project/
 .scala_dependencies
 .worksheet
 .project
-
-# Gradle specific
-.gradle/
