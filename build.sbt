@@ -8,11 +8,10 @@ scalaVersion := "2.11.0"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8", "-feature")
 
-unmanagedResourceDirectories in Compile <++= baseDirectory { base =>
-    Seq( base / "src/main/webapp" )
-}
-
 resolvers ++= Seq(
+  "sonatype releases" at "https://oss.sonatype.org/content/repositories/releases/",
+  "sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/",
+  "typesafe repo" at "http://repo.typesafe.com/typesafe/releases/",
   "spray repo" at "http://repo.spray.io/"
 )
 
@@ -29,8 +28,9 @@ libraryDependencies ++= {
   "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",
   "ch.qos.logback" % "logback-classic" % "1.1.2",
-  "org.scalatest" %% "scalatest" % "2.2.1-M3" % "test"
+  "org.scalatest" %% "scalatest" % "2.1.5" % "test",
+  "org.specs2" %% "specs2" % "2.3.11" % "test",
+  "junit" % "junit" % "4.8.1" % "test"
   )
 }
 
-seq(Resolver.settings: _*)
