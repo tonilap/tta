@@ -13,18 +13,24 @@ unmanagedResourceDirectories in Compile <++= baseDirectory { base =>
 }
 
 resolvers ++= Seq(
-  "sonatype releases" at "https://oss.sonatype.org/content/repositories/releases/",
-  "sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/",
-  "typesafe repo" at "http://repo.typesafe.com/typesafe/releases/",
   "spray repo" at "http://repo.spray.io/"
 )
 
-libraryDependencies ++= Seq(
-   "io.spray" %% "spray-json" % "1.2.6"
-  ,"io.spray" %% "spray-can" % "1.3.1-20140423"
-  ,"io.spray" %% "spray-routing" % "1.3.1-20140423"
-  ,"io.spray" %% "spray-testkit" % "1.3.1-20140423"
-  ,"com.typesafe.akka" %% "akka-actor" % "2.3.2"
-  ,"junit" % "junit" % "4.8.1" % "test"
-  ,"org.scalatest" % "scalatest_2.11" % "2.1.5"
-)
+libraryDependencies ++= {
+  val sprayVersion = "1.3.1"
+  val akkaVersion = "2.3.4"
+  Seq(
+  "io.spray" % "spray-can" % sprayVersion,
+  "io.spray" % "spray-routing" % sprayVersion,
+  "io.spray" % "spray-testkit" % sprayVersion,
+  "io.spray" % "spray-client" % sprayVersion,
+  "io.spray" %% "spray-json" % "1.2.6",
+  "com.typesafe.akka" %% "akka-actor" % akkaVersion,
+  "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
+  "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",
+  "ch.qos.logback" % "logback-classic" % "1.1.2",
+  "org.scalatest" %% "scalatest" % "2.2.1-M3" % "test"
+  )
+}
+
+seq(Resolver.settings: _*)
