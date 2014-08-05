@@ -1,4 +1,4 @@
-mmt
+tta
 ===
 
-Media management tool. Technology stack: Scala, MongoDB, Javascript, ...
+Time Track App. Technology stack: Scala, MongoDB, Javascript, ...
