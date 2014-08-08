@@ -1,4 +1,4 @@
-name := """app"""
+name := "tta"
 
 version := "1.0-SNAPSHOT"
 

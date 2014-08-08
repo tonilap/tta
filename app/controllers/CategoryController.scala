@@ -4,8 +4,7 @@ import play.api._
 import play.api.mvc._
 import model.Category
 
-
-class CategoryController extends Controller{
+object CategoryController extends Controller {
 
   def testMethodForPlayCategory = Action { implicit request =>
     Category.save                  
