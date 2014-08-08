@@ -1,23 +1,16 @@
-import com.typesafe.sbt.SbtStartScript
+name := """app"""
 
-seq(SbtStartScript.startScriptForClassesSettings: _*)
+version := "1.0-SNAPSHOT"
 
-organization := "com.toni"
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-name := "tta"
-
-version := "1.0"
-
-scalaVersion := "2.9.2"
-
-resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+scalaVersion := "2.11.2"
 
 libraryDependencies ++= Seq(
-	"com.twitter" % "finagle-core" % "1.9.0", 
-	"com.twitter" % "finagle-http" % "1.9.0",
-	"org.mongodb" %% "casbah" % "2.5.0",
-	"com.novus" %% "salat-core" % "1.9.5"
-	)
-
-resolvers += Classpaths.typesafeResolver
-
+  jdbc,
+  anorm,
+  cache,
+  ws,
+  "org.mongodb" %% "casbah" % "2.7.3",
+  "com.novus" %% "salat-core" % "1.9.8"
+)

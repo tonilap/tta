@@ -1,4 +1,4 @@
-package com.toni.tta.db
+package db
 
 import com.mongodb.casbah.MongoConnection
 
