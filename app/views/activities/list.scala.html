@@ -1,0 +1,14 @@
+@(activities: List[Activity])(implicit lang:Lang)
+
+@main(Messages("application.name")) {
+
+    <dl class="activities">
+      @for(activity <- activities){
+        <dt>@activity.name</dt>
+        <dd>@activity.category.name</dd>
+        <dd>@activity.start</dd>
+        <dd>@activity.end</dd>
+      }
+    </dl>
+
+}

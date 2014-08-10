@@ -8,6 +8,9 @@ GET     /				controllers.Application.index
 # Categories
 GET		/categories		controllers.Categories.list
 
+# Activities
+GET		/activities		controllers.Activities.list
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file	controllers.Assets.at(path="/public", file)
 
