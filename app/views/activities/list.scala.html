@@ -1,4 +1,4 @@
-@(activities: List[Activity])(implicit lang:Lang)
+@(activities: List[Activity])(implicit flash: Flash, lang: Lang)
 
 @main(Messages("application.name")) {
 
@@ -10,5 +10,9 @@
         <dd>@activity.end</dd>
       }
     </dl>
-
+	
+	<p>
+	  <a href="@controllers.routes.Activities.newActivity()" class="btn"
+	  <i class="icon-plus"></i> @Messages("activities.new.command")</a>
+	</p>
 }

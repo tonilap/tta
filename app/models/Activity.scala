@@ -22,6 +22,12 @@ object Activity {
   def findAll = activities.toList.sortBy(_.name)
   
   /**
+   * Gets the activity with the specified id
+   */
+  def findByName(name: String) = {
+    activities.filter(_ == name)
+  }
+  /**
    * Adds a new Activity
    */
   def add(activity: Activity) = {

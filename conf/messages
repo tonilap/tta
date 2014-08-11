@@ -1,1 +1,10 @@
 application.name = Time Tracker App
+
+activities.form = Activity details
+activities.details = 
+activities.new = (new)
+activities.new.submit = Add
+activities.new.command = New
+activities.new.success = Activity added {0}.
+
+validation.errors = Please correct the errors.

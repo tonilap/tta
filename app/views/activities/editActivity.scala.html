@@ -1,0 +1,21 @@
+@(activityForm: Form[Activity])(implicit flash: Flash, lang: Lang)
+@import helper._
+@import helper.twitterBootstrap._
+
+@main(Messages("activities.form")) {
+	
+	<h2>@Messages("activities.form")</h2>
+	
+	@helper.form(action = routes.Activities.save()) {
+	  <fieldset>
+	    <legend>
+	      @Messages("activities.details", Messages("activities.new"))
+	    </legend>
+	    @helper.inputText(activityForm("name"))
+	    @helper.inputText(activityForm("category"))
+	    @helper.inputText(activityForm("start"))
+	    @helper.inputText(activityForm("ends"))
+	  </fieldset>
+	  <p><input type="submit" class="btn primary" value='@Messages("activities.new.submit")'></p>
+	}
+}
