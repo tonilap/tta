@@ -7,7 +7,7 @@ import java.util.Date
  * 
  * Activity model
  */
-case class Activity(name: String, category: String, start: Date, end: Date)
+case class Activity(id:Long, name: String, category: String, start: Date, end: Date)
 
 /**
  * Activity DAO
@@ -24,9 +24,7 @@ object Activity {
   /**
    * Gets the activity with the specified id
    */
-  def findByName(name: String) = {
-    activities.filter(_ == name)
-  }
+  def findById(id: Long) = activities.find(_.id == id)
   /**
    * Adds a new Activity
    */

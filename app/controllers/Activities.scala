@@ -1,13 +1,11 @@
 package controllers
 
 import models.Activity
-import play.api.mvc.Action
-import play.api.mvc.Controller
+import play.api.mvc.{Flash, Action, Controller}
 import play.api.data.Form
 import play.api.data.Forms._
 import models.Category
 import play.api.i18n.Messages
-import play.api.mvc.Flash
 
 /**
  * @author tonilap
@@ -16,9 +14,11 @@ import play.api.mvc.Flash
  */
 object Activities extends Controller {
  
-
+  
   private val activityForm: Form[Activity] = Form(
       mapping(
+          "id" -> longNumber.verifying(
+        		  "validation.id.duplicate", Activity.findById(_).isEmpty), 
           "name" -> nonEmptyText,
           "category" -> nonEmptyText.verifying("Category not exists (1)!", Category.findOne(_) == 1) ,
           "start" -> date("yyyy-MM-dd"),
@@ -37,10 +37,10 @@ object Activities extends Controller {
   /**
    * Action to get an activity details
    */
-  def show(name: String) = Action { implicit request =>
-    Activity.findByName(name).map { activity =>
-      Ok(views.html.activities.details(activity))
-    }.getOrElse(NotFound)
+  def show(id: Long) = Action { implicit request =>
+	Activity.findById(id).map { activity =>
+	Ok(views.html.activities.details(activity))
+	}.getOrElse(NotFound)
   }
   /**
    * Creates a new activity
@@ -49,22 +49,21 @@ object Activities extends Controller {
     val newActivityForm = activityForm .bindFromRequest()
     
     newActivityForm.fold(
-        hasErrors = { form => Redirect(routes.Activities.newActivity)
+        hasErrors = { form => Redirect(routes.Activities.newActivity())
           .flashing(Flash(form.data) + ("error" -> Messages("validation.errors")))}, 
         success = { newActivity => 
           Activity.add(newActivity)
-          val message = Messages("activities.new.success", newActivity.name)
-          Redirect(routes.Activities.show(newActivity.name)).flashing("success" -> message)
+          val message = Messages("activities.new.success", newActivity.id)
+          Redirect(routes.Activities.show(newActivity.id)).flashing("success" -> message)
         }
       )
   }
   
   def newActivity = Action { implicit request =>
-    val form = 
-      if(flash.get("error").isDefined)
-        activityForm.bind(flash.data)
-      else
-    	activityForm  
-    Ok(views.html.activities.editActivity(form))
+//    val form = if (flash.get("error").isDefined)
+//        activityForm.bind(flash.data)
+//      else
+//    	activityForm  
+    Ok(views.html.activities.editActivity(activityForm))
   }
 }

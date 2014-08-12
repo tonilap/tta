@@ -10,7 +10,7 @@ GET		/categories			controllers.Categories.list
 
 # Activities
 GET		/activities			controllers.Activities.list
-GET		/activities/:name	controllers.Activities.show(name: String)
+GET		/activities/:id		controllers.Activities.show(id: Long)
 POST	/activities			controllers.Activities.save
 GET		/activities/new 	controllers.Activities.newActivity
 
